@@ -8,7 +8,11 @@ export const useReserva = () => {
   const [progress, setProgress] = useState(0);
   const [service, setService] = useState("");
   const [time, setTime] = useState("");
-  const [turno, setTurno] = useState<TurnoReservadoType>();
+  const [turno, setTurno] = useState<TurnoReservadoType>({
+    servicio: '',
+    fecha:'',
+    hora:''
+  });
 
   const { turnosReservados, setTurnosReservados } = useContext(ReservasContext);
 
@@ -27,13 +31,15 @@ export const useReserva = () => {
   };
 
   const createTurn = () => {
+    console.log(service, date, time)
     setTurno({
         servicio: service,
         fecha: date,
         hora: time
     })
-    setTurnosReservados([...turnosReservados, turno]);
-    console.log(turnosReservados);
+    console.log(turno)
+    // setTurnosReservados([...turnosReservados, turno]);
+    // console.log(turnosReservados);
   };
 
   return {
