@@ -2,10 +2,10 @@ import turnos from '../../db/db.json'
 
 type Props = {
     date: string
-    handleHora: (arg:string )=>void
+    handleTime: (arg:string )=>void
 }
 
-export const Turnos = ({date, handleHora}: Props) => {
+export const Turnos = ({date, handleTime}: Props) => {
 
     const getDate = (date:string) => {
         const array = date.split('/').reverse()
@@ -33,7 +33,7 @@ export const Turnos = ({date, handleHora}: Props) => {
                     className='border-2 rounded-md p-4 flex items-center justify-center w-32 mt-5 gap-5 relative font-semibold' 
                     htmlFor={turno.horaTurno} 
                     key={turno.horaTurno}> {turno.horaTurno}
-                    <input type="radio" name="turno" id={turno.horaTurno} value={turno.horaTurno} disabled={turno.reservado ? true : false} onClick={()=>handleHora(turno.horaTurno)}/>
+                    <input type="radio" name="turno" id={turno.horaTurno} value={turno.horaTurno} disabled={turno.reservado ? true : false} onClick={()=>handleTime(turno.horaTurno)}/>
                     {
                         turno.reservado && 
                     <div className='absolute p-1 bg-red-400 -rotate-12 -right-2 text-sm top-4 rounded-md'>Reservado</div>
