@@ -1,29 +1,16 @@
 import { ReactNode, createContext, useState } from "react"
+import { ReservasContext, TurnoReservadoType } from "../types/categorias"
 
-type TurnoReservadoType = {
-    fecha: string,
-    hora: string,
-    servicio: string
-}
-type ReservasProviderType = {
-    children: ReactNode
-}
-type ReservasContext = {
-    turnosReservado: TurnoReservadoType,
-    setTurnosReservado: (arg: TurnoReservadoType) => void
-}
 
-export const ReservasContext = createContext({})
 
-export const ReservasProvider = ({children}: ReservasProviderType) => {
+export const ReservasContext = createContext<ReservasContext | null>(null)
+
+export const ReservasProvider:React.FC<{children: React.ReactNode}> = ({children}) => {
 
     const [turnosReservados, setTurnosReservados] = useState<TurnoReservadoType[]>()
 
     return (
-        <ReservasContext.Provider value={{
-            turnosReservados,
-            setTurnosReservados
-        }}>
+        <ReservasContext.Provider value={{turnosReservados, setTurnosReservados}}>
             {children}
         </ReservasContext.Provider>
     )

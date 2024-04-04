@@ -5,7 +5,7 @@ import { useReserva } from "../../hooks/useReserva";
 
 export const Reservas: React.FC = (): ReactNode => {
   
-  const {time, date, service, progress, turnoReservado, handleDate, handleTime, handleService} = useReserva()
+  const {time, date, service, progress, createTurn, handleDate, handleTime, handleService} = useReserva()
   
   return (
     <div className="mx-auto flex flex-col items-center justify-between h-full">
@@ -28,7 +28,7 @@ export const Reservas: React.FC = (): ReactNode => {
       }
       {
         time &&
-        <button className="p-3 border-2 border-black hover:bg-black hover:text-white text-black font-semibold mt-2" onClick={()=>{console.log(turnoReservado)}}>Continuar &#x27A1; </button>
+        <button className="p-3 border-2 border-black hover:bg-black hover:text-white text-black font-semibold mt-2" onClick={()=>createTurn()}>Continuar &#x27A1; </button>
       }
     </div>
   );
