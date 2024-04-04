@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from "react"
+
 export type ServiciosType = {
     tituloServicio: string,
     descripcionServicio: string
@@ -14,7 +16,7 @@ export type TurnoReservadoType = {
     servicio: string
 }
 
-export type ReservasContext = {
+export type ReservasContextType = {
     turnosReservados: TurnoReservadoType[],
-    setTurnosReservados: (arg: TurnoReservadoType) => void
+    setTurnosReservados: Dispatch<SetStateAction<TurnoReservadoType[]>>
 }

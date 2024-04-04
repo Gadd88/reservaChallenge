@@ -1,13 +1,12 @@
-import React, { ReactNode, useEffect, useState } from "react";
+import React, { ReactNode } from "react";
 import { Accordion } from "flowbite-react";
 import categorias from "../../db/categorias.json";
-import { CategoriaItem } from "../categoriaItem/CategoriaItem";
 
 type Props = {
   handleService: (arg: string) => void;
 };
 
-export const Categorias = ({ handleService }: Props): ReactNode => {
+export const Categorias:React.FC<Props> = ({ handleService }): ReactNode => {
 
     // const [ currentIdx, setCurrentIdx ] = useState<number>(-1)
     // const handleVisible = (idx:number) => {
@@ -23,8 +22,9 @@ export const Categorias = ({ handleService }: Props): ReactNode => {
                   <Accordion key={categoria.titulo} className="min-w-80 mb-5" collapseAll>
             <Accordion.Panel>
                 <Accordion.Title>{categoria.titulo}</Accordion.Title>
-                {categoria.servicios.map((servicio) => (
                 <Accordion.Content key={crypto.randomUUID()}>
+                {categoria.servicios.map((servicio) => (
+                  <div key={crypto.randomUUID()}>
                     <h4>{servicio.tituloServicio}</h4>
                     <p>{servicio.descripcionServicio}</p>
                     <button
@@ -33,8 +33,9 @@ export const Categorias = ({ handleService }: Props): ReactNode => {
                         >
                         Seleccionar
                     </button>
-                </Accordion.Content>
+                  </div>
                 ))}
+                </Accordion.Content>
             </Accordion.Panel>
             </Accordion>
         ))

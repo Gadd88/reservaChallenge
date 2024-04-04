@@ -3,6 +3,7 @@ import { ReservasContext } from "../context/ReservasContext";
 import { TurnoReservadoType } from "../types/categorias";
 
 export const useReserva = () => {
+
   const [date, setDate] = useState("");
   const [progress, setProgress] = useState(0);
   const [service, setService] = useState("");
@@ -25,13 +26,12 @@ export const useReserva = () => {
     setProgress(75);
   };
 
-  const createTurn = ():void => {
+  const createTurn = () => {
     setTurno({
         servicio: service,
         fecha: date,
         hora: time
     })
-    console.log(turno)
     setTurnosReservados([...turnosReservados, turno]);
     console.log(turnosReservados);
   };
