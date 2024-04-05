@@ -13,7 +13,7 @@ export const Categorias:React.FC<Props> = ({ handleService }): ReactNode => {
       <h2 className="font-semibold text-xl mb-5">Servicios</h2>
       {
           categorias.map((categoria) => (
-            <Accordion key={categoria.titulo} className="min-w-[340px] mb-5" collapseAll>
+            <Accordion key={categoria.titulo} className="min-w-[320px] w-full mb-5" collapseAll>
               <Accordion.Panel>
                   <Accordion.Title className="text-black font-semibold bg-white hover:bg-pink-200 border-none focus:border-none active:border-none outline-none  focus:outline-none active:outline-none">{categoria.titulo}</Accordion.Title>
                   <Accordion.Content key={crypto.randomUUID()} className="border-none outline-none bg-white focus:border-none active:border-none focus:outline-none active:outline-none">

@@ -6,7 +6,7 @@ export const MisReservas:React.FC = ():ReactNode => {
   const { turnosReservados, cancelTurn } = useReserva()
 
   return (
-    <div className='mx-auto flex flex-col items-start justify-start min-w-80 w-[99.5%] h-full'>
+    <div className='mx-auto flex flex-col items-start justify-start min-w-80 w-[99%] max-w-[99%] h-full'>
       <h1 className=''>Mis Reservas</h1>
       <ul className='w-full p-5 flex flex-col items-center justify-start gap-2 min-h-80 mt-5'>
         {
