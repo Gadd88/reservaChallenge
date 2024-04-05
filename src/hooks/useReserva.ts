@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ReservasContext } from "../context/ReservasContext";
 import { useNavigate } from "react-router-dom";
 import { TurnoReservadoType } from "../types/categorias";
+import { toast } from 'react-toastify'
 
 export const useReserva = () => {
   const navigate = useNavigate()
@@ -43,8 +44,12 @@ export const useReserva = () => {
       newTurns[turnIdx].reservado = false
       setTurns(newTurns)
     }
-      const newList = turnosReservados.filter(turno => turno.id !== id)
-      setTurnosReservados(newList)
+    toast.error('❌ Turno Cancelado',{
+      position: "top-center",
+      className: 'bg-pink-200 font-semibold'
+    })
+    const newList = turnosReservados.filter(turno => turno.id !== id)
+    setTurnosReservados(newList)
   }
 
   const createTurn = (idTurn: string) => {
@@ -56,12 +61,23 @@ export const useReserva = () => {
     }
     saveReservation(idTurn)
     setTurnosReservados([...turnosReservados, newTurno]);
+    const resolvePromise = new Promise(resolve => setTimeout(resolve, 600))
+    toast.promise(
+      resolvePromise,
+      {
+        pending: '🕐 Guardando Turno',
+        success: '💖💅 Turno Creado',
+        error: '❌ Ocurrió un error, intenta de nuevo',
+      },{
+        position: 'top-center',
+      }
+    )
     setTimeout(() => {
       setService('')
       setTime('')
       setDate('')
       navigate('/misreservas')
-    }, 500);
+    }, 1100);
   };
 
   return {

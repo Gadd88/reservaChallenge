@@ -8,7 +8,7 @@ export const MisReservas:React.FC = ():ReactNode => {
   return (
     <div className='mx-auto flex flex-col items-start justify-start min-w-80 w-full h-full'>
       <h1 className=''>Mis Reservas</h1>
-      <ul className='bg-pink-50 w-full p-5 flex flex-col items-center justify-start gap-2 min-h-80 mt-5'>
+      <ul className='w-full p-5 flex flex-col items-center justify-start gap-2 min-h-80 mt-5'>
         {
           turnosReservados.length < 1 && <p className='font-bold text-pink-700'>No tiene turnos reservados</p>
         }

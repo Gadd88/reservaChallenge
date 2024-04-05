@@ -9,10 +9,10 @@ export const ReservasContext = createContext<ReservasContextType>(
 export const ReservasProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
+  const initialReservations: TurnoReservadoType[] = JSON.parse(localStorage.getItem('myTurns') as string) || []
   const [turnosReservados, setTurnosReservados] = useState<
     TurnoReservadoType[]
-  >([]);
-
+  >(initialReservations);
   const [date, setDate] = useState("");
   const [progreso, setProgreso] = useState(0);
   const [service, setService] = useState("");
@@ -31,7 +31,7 @@ export const ReservasProvider: React.FC<{ children: React.ReactNode }> = ({
   },[])
 
   useEffect(()=>{
-    localStorage.setItem('misTurnos', JSON.stringify(turnosReservados))
+    localStorage.setItem('myTurns', JSON.stringify(turnosReservados))
   },[turnosReservados])
 
   return (

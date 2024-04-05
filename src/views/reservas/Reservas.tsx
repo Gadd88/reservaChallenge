@@ -9,7 +9,7 @@ export const Reservas: React.FC = (): ReactNode => {
   const [idTurn, setIdTurn] = useState('')
 
   return (
-    <div className="mx-auto flex flex-col items-center justify-start gap-1 h-full min-w-full">
+    <div className="mx-auto flex flex-col items-center justify-start gap-1 h-[98%] w-full">
       <h1>Reservar</h1>
       <Progress progress={progreso} size='sm' color="pink" className="my-5 border-1 border-black"/>
       <Categorias handleService={handleService}/>
@@ -29,7 +29,7 @@ export const Reservas: React.FC = (): ReactNode => {
       }
       {
         time &&
-        <button className="p-3 border-2 border-pink-700 hover:bg-pink-700 hover:text-white text-black font-semibold mt-2 focus:border-pink-700 active:border-pink-700 outline-none" onClick={()=>createTurn(idTurn)}>Continuar &#x27A1; </button>
+        <button className="p-3 border-2 border-pink-700 hover:bg-pink-700 hover:text-white text-black font-semibold my-5 focus:border-pink-700 active:border-pink-700 outline-none" onClick={()=>createTurn(idTurn)}>Continuar &#x27A1; </button>
       }
     </div>
   );
