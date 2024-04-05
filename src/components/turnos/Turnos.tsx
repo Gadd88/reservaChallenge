@@ -1,14 +1,12 @@
-import { Dispatch, SetStateAction } from "react";
 import { useReserva } from "../../hooks/useReserva";
-import { TurnosJSON } from "../../types/categorias";
 
 type Props = {
   date: string;
   handleTime: (arg: string) => void;
-  setIdTurn: Dispatch<SetStateAction<string>>;
+  
 };
 
-export const Turnos = ({ date, handleTime, setIdTurn }: Props) => {
+export const Turnos = ({ date, handleTime }: Props) => {
   const { turns } = useReserva();
 
   const getDate = (date: string) => {
@@ -26,20 +24,17 @@ export const Turnos = ({ date, handleTime, setIdTurn }: Props) => {
     (turno) => turno.fechaTurno == dateSelected
   );
 
-  const onChangeRadio = (id: TurnosJSON['id']) => {
-    setIdTurn(id);
-  };
 
   return (
     <div className="grid grid-cols-2 gap-5">
       {dateSelectedTurns.length < 1 && (
-        <p className="p-2 bg-yellow-300 rounded-md font-semibold my-2">
+        <p className="p-2 bg-pink-300 rounded-md font-semibold my-2 w-full col-span-2 text-center">
           No hay turnos para la fecha seleccionada
         </p>
       )}
       {dateSelectedTurns.map((turno) => (
         <label
-          className="border-2 border-pink-700 rounded-md p-4 flex items-center justify-center w-32 mt-5 gap-5 relative font-semibold overflow-hidden"
+          className="border-2 border-pink-700 rounded-none p-4 flex items-center justify-center w-32 mt-5 gap-5 relative font-semibold overflow-hidden"
           htmlFor={turno.horaTurno}
           key={turno.horaTurno}
         >
@@ -53,7 +48,6 @@ export const Turnos = ({ date, handleTime, setIdTurn }: Props) => {
             value={turno.horaTurno}
             disabled={turno.reservado ? true : false}
             onClick={() => handleTime(turno.horaTurno)}
-            onChange={()=>onChangeRadio(turno.id)}
           />
           {turno.reservado && (
             <div className="absolute p-1 bg-red-400 -rotate-[18deg] right-4 text-sm top-4 rounded-md">

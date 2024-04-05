@@ -1,12 +1,11 @@
-import React, { ReactNode, useState } from "react";
-import { Categorias, Turnos } from "../../components/";
+import React, { ReactNode } from "react";
+import { ArrowIcon, Categorias, Turnos } from "../../components/";
 import { Datepicker, Progress } from "flowbite-react";
 import { useReserva } from "../../hooks/useReserva";
 
 export const Reservas: React.FC = (): ReactNode => {
   
   const {time, date, service, progreso, createTurn, handleDate, handleTime, handleService} = useReserva()
-  const [idTurn, setIdTurn] = useState('')
 
   return (
     <div className="mx-auto flex flex-col items-center justify-start gap-1 h-[98%] w-[99%] max-w-[99%]">
@@ -25,11 +24,11 @@ export const Reservas: React.FC = (): ReactNode => {
         />
       }
       {
-        date && <Turnos date={date} handleTime={handleTime} setIdTurn={setIdTurn}/>
+        date && <Turnos date={date} handleTime={handleTime}/>
       }
       {
         time &&
-        <button className="p-3 border-2 border-pink-700 hover:bg-pink-700 hover:text-white text-black font-semibold my-5 focus:border-pink-700 active:border-pink-700 outline-none" onClick={()=>createTurn(idTurn)}>Continuar &#x27A1; </button>
+        <button className="p-3 border-2 border-pink-700 hover:bg-pink-700 hover:text-white text-black font-semibold my-5 focus:border-pink-700 active:border-pink-700 outline-none flex items-center justify-center gap-2" onClick={()=>createTurn()}>Continuar <ArrowIcon className="w-5 -rotate-90 object-cover"/> </button>
       }
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react"
-import logo from '../../manicura.png'
+import logo from '../../assets/manicura.png'
 
 export const Home:React.FC = ():ReactNode => {
   return (

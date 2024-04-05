@@ -19,8 +19,8 @@ export const ReservasProvider: React.FC<{ children: React.ReactNode }> = ({
   const [time, setTime] = useState("");
   const [turns, setTurns] = useState<TurnosJSON[]>([]);
 
-  const saveReservation = (idTurn: TurnosJSON['id']) => {
-    const turnIdx = turns.findIndex(turno => turno.id === idTurn);
+  const saveReservation = (turnId: TurnosJSON['id']) => {
+    const turnIdx = turns.findIndex(turno => turno.id === turnId);
     const newTurns = structuredClone(turns)
     newTurns[turnIdx].reservado = true
     setTurns(newTurns)

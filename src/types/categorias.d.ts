@@ -11,7 +11,7 @@ export type CategoriaType = {
 }
 
 export type TurnoReservadoType = {
-    id?: string,
+    id: string,
     fecha: string,
     hora: string,
     servicio: string
