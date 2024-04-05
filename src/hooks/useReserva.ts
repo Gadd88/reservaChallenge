@@ -46,15 +46,16 @@ export const useReserva = () => {
         position: "top-center",
         className: 'bg-pink-200 font-semibold'
       })
+      if(newTurns[selectedTurnIdx].reservado == false){
+        const newList = turnosReservados.filter(turno => turno.id !== id)
+        setTurnosReservados(newList)
+      }
     }
-    const newList = turnosReservados.filter(turno => turno.id !== id)
-    setTurnosReservados(newList)
   }
 
   const createTurn = () => {
     const getTurnDate = (date:string) => {
       const turnDate = date.split('/').reverse()
-      console.log(turnDate)
       for(let i=0; i<=2; i++){
         if(turnDate[i].length < 2){
           turnDate[i] = turnDate[i].concat('0').split('').reverse().join('')
