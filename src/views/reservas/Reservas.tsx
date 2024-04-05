@@ -9,7 +9,7 @@ export const Reservas: React.FC = (): ReactNode => {
   const [idTurn, setIdTurn] = useState('')
 
   return (
-    <div className="mx-auto flex flex-col items-center justify-start gap-1 h-[98%] w-full">
+    <div className="mx-auto flex flex-col items-center justify-start gap-1 h-[98%] w-[99.5%]">
       <h1>Reservar</h1>
       <Progress progress={progreso} size='sm' color="pink" className="my-5 border-1 border-black"/>
       <Categorias handleService={handleService}/>
