@@ -1,21 +1,58 @@
-import { createContext, useState } from "react"
-import { ReservasContextType, TurnoReservadoType } from "../types/categorias"
+import { createContext, useEffect, useState } from "react";
+import { ReservasContextType, TurnoReservadoType, TurnosJSON } from "../types/categorias";
+import turnos from '../db/db.json'
 
+export const ReservasContext = createContext<ReservasContextType>(
+  {} as ReservasContextType
+);
 
+export const ReservasProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
+  const [turnosReservados, setTurnosReservados] = useState<
+    TurnoReservadoType[]
+  >([]);
 
-export const ReservasContext = createContext<ReservasContextType>({} as ReservasContextType)
+  const [date, setDate] = useState("");
+  const [progreso, setProgreso] = useState(0);
+  const [service, setService] = useState("");
+  const [time, setTime] = useState("");
+  const [turns, setTurns] = useState<TurnosJSON[]>([]);
 
-export const ReservasProvider:React.FC<{children: React.ReactNode}> = ({children}) => {
+  const saveReservation = (idTurn: TurnosJSON['id']) => {
+    const turnIdx = turns.findIndex(turno => turno.id === idTurn);
+    const newTurns = structuredClone(turns)
+    newTurns[turnIdx].reservado = true
+    setTurns(newTurns)
+  }
 
-    const [turnosReservados, setTurnosReservados] = useState<TurnoReservadoType[]>([{
-        servicio:'',
-        fecha:'',
-        hora:''
-    }])
+  useEffect(()=>{
+    setTurns(turnos)
+  },[])
 
-    return (
-        <ReservasContext.Provider value={{turnosReservados, setTurnosReservados}}>
-            {children}
-        </ReservasContext.Provider>
-    )
-}
+  useEffect(()=>{
+    localStorage.setItem('misTurnos', JSON.stringify(turnosReservados))
+  },[turnosReservados])
+
+  return (
+    <ReservasContext.Provider
+      value={{
+        turnosReservados,
+        date,
+        service,
+        time,
+        progreso,
+        turns,
+        setTurns,
+        saveReservation,
+        setTurnosReservados,
+        setDate,
+        setService,
+        setTime,
+        setProgreso,
+      }}
+    >
+      {children}
+    </ReservasContext.Provider>
+  );
+};

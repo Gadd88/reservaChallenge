@@ -1,56 +1,81 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ReservasContext } from "../context/ReservasContext";
+import { useNavigate } from "react-router-dom";
 import { TurnoReservadoType } from "../types/categorias";
 
 export const useReserva = () => {
-
-  const [date, setDate] = useState("");
-  const [progress, setProgress] = useState(0);
-  const [service, setService] = useState("");
-  const [time, setTime] = useState("");
-  const [turno, setTurno] = useState<TurnoReservadoType>({
-    servicio: '',
-    fecha:'',
-    hora:''
-  });
-
-  const { turnosReservados, setTurnosReservados } = useContext(ReservasContext);
+  const navigate = useNavigate()
+  const {
+    turnosReservados,
+    progreso,
+    date,
+    time,
+    service,
+    turns,
+    saveReservation,
+    setTurns,
+    setDate,
+    setTime,
+    setService,
+    setProgreso,
+    setTurnosReservados,
+  } = useContext(ReservasContext);
 
   const handleService = (value: string) => {
     setService(value);
-    setProgress(25);
+    setProgreso(25);
   };
   const handleDate = (date: Date) => {
     setDate(date.toLocaleDateString());
-    setProgress(50);
+    setProgreso(50);
   };
 
   const handleTime = (time: string) => {
     setTime(time);
-    setProgress(75);
+    setProgreso(75);
   };
 
-  const createTurn = () => {
-    console.log(service, date, time)
-    setTurno({
-        servicio: service,
-        fecha: date,
-        hora: time
-    })
-    console.log(turno)
-    // setTurnosReservados([...turnosReservados, turno]);
-    // console.log(turnosReservados);
+  const cancelTurn = (id: TurnoReservadoType['id']) => {
+    const selectedTurn = turnosReservados.find(turno => turno.id === id);
+    if(selectedTurn){
+      const turnIdx = turns.findIndex(turno => turno.fechaTurno == selectedTurn.fecha.split('/').reverse().join('-0') && turno.horaTurno === selectedTurn.hora)
+      const newTurns = structuredClone(turns)
+      newTurns[turnIdx].reservado = false
+      setTurns(newTurns)
+    }
+      const newList = turnosReservados.filter(turno => turno.id !== id)
+      setTurnosReservados(newList)
+  }
+
+  const createTurn = (idTurn: string) => {
+    const newTurno = {
+      id: crypto.randomUUID(),
+      servicio: service,
+      fecha: date,
+      hora: time,
+    }
+    saveReservation(idTurn)
+    setTurnosReservados([...turnosReservados, newTurno]);
+    setTimeout(() => {
+      setService('')
+      setTime('')
+      setDate('')
+      navigate('/misreservas')
+    }, 500);
   };
 
   return {
     date,
-    progress,
+    progreso,
     service,
     time,
     turnosReservados,
+    turns,
+    setTurns,
     handleService,
     handleDate,
     handleTime,
-    createTurn
+    createTurn,
+    cancelTurn
   };
 };

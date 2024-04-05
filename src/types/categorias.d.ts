@@ -11,12 +11,30 @@ export type CategoriaType = {
 }
 
 export type TurnoReservadoType = {
+    id?: string,
     fecha: string,
     hora: string,
     servicio: string
 }
 
+export type TurnosJSON = {
+    id: string,
+    horaTurno: string,
+    fechaTurno: string,
+    reservado: boolean
+}
 export type ReservasContextType = {
     turnosReservados: TurnoReservadoType[],
-    setTurnosReservados: Dispatch<SetStateAction<TurnoReservadoType[]>>
+    date: string, 
+    service: string, 
+    time: string, 
+    progreso: number, 
+    turns: TurnosJSON[],
+    saveReservation: (idTurno: TurnosJSON['id']) => void,
+    setTurns: Dispatch<SetStateAction<TurnosJSON[]>>,
+    setTurnosReservados: Dispatch<SetStateAction<TurnoReservadoType[]>>,
+    setDate: Dispatch<SetStateAction<string>>, 
+    setService: Dispatch<SetStateAction<string>>, 
+    setTime: Dispatch<SetStateAction<string>>, 
+    setProgreso: Dispatch<SetStateAction<number>>
 }
