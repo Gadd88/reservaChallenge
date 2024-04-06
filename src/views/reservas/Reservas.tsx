@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { Categorias, Turnos, BtnAction } from "../../components/";
+import { Servicios, Turnos, BtnAction } from "../../components/";
 import { Datepicker, Progress } from "flowbite-react";
 import { useReserva } from "../../hooks/useReserva";
 
@@ -14,7 +14,7 @@ export const Reservas: React.FC = (): ReactNode => {
         <Progress progress={progreso} size='sm' color="pink" className="my-5 border-1 border-black"/>
         {
           !service &&
-          <Categorias handleService={handleService}/>
+          <Servicios handleService={handleService}/>
         }
         {
           !date &&

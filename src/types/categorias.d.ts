@@ -5,9 +5,15 @@ export type ServiciosType = {
     descripcionServicio: string
 }
 
-export type CategoriaType = {
-    titulo: string,
-    servicios: ServiciosType[]
+export type ServiceJson = {
+    id: number,
+    name: string,
+    description: string,
+    category: string,
+}
+
+export type Services = {
+    service: ServiceJson[]
 }
 
 export type TurnoReservadoType = {
