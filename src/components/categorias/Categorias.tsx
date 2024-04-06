@@ -22,6 +22,8 @@ export const Categorias:React.FC<Props> = ({ handleService }): ReactNode => {
                       <h4 className="font-semibold text-xl">{servicio.tituloServicio}</h4>
                       <p className="text-sm">{servicio.descripcionServicio}</p>
                       <button
+                          role="button"
+                          name='serviceBtn'
                           onClick={() => handleService(servicio.descripcionServicio)}
                           className="border-2 border-pink-300 rounded-none focus:bg-pink-300 focus:text-white focus:outline-none active:bg-pink-300 active:text-white"
                           >
