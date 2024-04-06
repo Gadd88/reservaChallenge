@@ -12,12 +12,12 @@ export const Servicios: React.FC<Props> = ({ handleService }): ReactNode => {
   );
 
   return (
-    <section className=" bg-pink-100 p-5 rounded-md shadow-sm flex items-start justify-center flex-col">
+    <section className=" bg-pink-100 p-5 rounded-md shadow-sm flex items-start justify-center flex-col mb-10">
       <h2 className="font-semibold text-xl mb-5">Servicios</h2>
       {categories.map((category) => (
         <Accordion
           key={category}
-          className="min-w-[320px] w-96 mb-5"
+          className="min-w-[320px] w-full md:min-w-[500px] mb-5"
           collapseAll
         >
           <Accordion.Panel>

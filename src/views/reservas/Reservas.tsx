@@ -8,9 +8,9 @@ export const Reservas: React.FC = (): ReactNode => {
   const {time, date, service, progreso, handleDate, handleTime, handleService} = useReserva()
 
   return (
-    <div className="mx-auto flex flex-col items-center justify-start gap-1 h-[98%] w-[99%] max-w-[99%]">
+    <div className="mx-auto flex flex-col items-center justify-start gap-1 h-[98%] w-[99%] max-w-[99%] mb-5">
       <h1 className="block">Reservar</h1>
-      <section className="flex flex-col items-center justify-start gap-1 h-full w-full md:gap-3 mx-auto">
+      <section className="flex flex-col items-center justify-start gap-1 w-full md:gap-3 mx-auto">
         <Progress progress={progreso} size='sm' color="pink" className="my-5 border-1 border-black"/>
         {
           !service &&
