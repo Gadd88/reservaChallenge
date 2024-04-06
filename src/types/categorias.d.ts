@@ -36,5 +36,7 @@ export type ReservasContextType = {
     setDate: Dispatch<SetStateAction<string>>, 
     setService: Dispatch<SetStateAction<string>>, 
     setTime: Dispatch<SetStateAction<string>>, 
-    setProgreso: Dispatch<SetStateAction<number>>
+    setProgreso: Dispatch<SetStateAction<number>>,
+    cancelTurn: (id: TurnoReservadoType['id'])=> void,
+    createTurn: () => void,
 }
